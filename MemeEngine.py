@@ -19,8 +19,10 @@ class MemeEngine:
             # Adding a quote body and a quote author to the image.
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('~/Library/Fonts/MesloLGS NF Regular.ttf', size=20)
-            # TODO: Make text responsive
-            draw.text((15, 100), f'{text}\n-- {author}', font=font, fill='#3867d6')
+            # Adjust text position align with image height and width
+            w, h = img.size
+            text_w, text_h = draw.textsize(f'{text}\n-- {author}', font)
+            draw.text((w - text_w, h - (text_h*1.5)), f'{text}\n-- {author}', font=font, fill='#3867d6')
 
             # create output_dir if not exists
             if not os.path.exists(self.output_dir):
