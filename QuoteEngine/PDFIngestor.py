@@ -4,9 +4,9 @@ import re
 import subprocess
 from typing import List
 
-from IngestorInterface import IngestInterface
-from QuoteModel import QuoteModel
-from exceptions import UnsupportedFileTypeError
+from .IngestorInterface import IngestInterface
+from .QuoteModel import QuoteModel
+from .exceptions import UnsupportedFileTypeError
 
 
 class PDFIngestor(IngestInterface):

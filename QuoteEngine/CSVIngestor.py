@@ -2,9 +2,9 @@ from typing import List
 
 import pandas
 
-from IngestorInterface import IngestInterface
-from QuoteModel import QuoteModel
-from exceptions import UnsupportedFileTypeError
+from .IngestorInterface import IngestInterface
+from .QuoteModel import QuoteModel
+from .exceptions import UnsupportedFileTypeError
 
 
 class CSVIngestor(IngestInterface):
@@ -26,6 +26,6 @@ class CSVIngestor(IngestInterface):
         return quotes
 
 
-dataframe = pandas.read_csv('../_data/DogQuotes/DogQuotesCSV.csv', header=0)
-for index, row in dataframe.iterrows():
-    print(f'index: {index}\nrow:{row["body"]}')
+# dataframe = pandas.read_csv('../_data/DogQuotes/DogQuotesCSV.csv', header=0)
+# for index, row in dataframe.iterrows():
+#     print(f'index: {index}\nrow:{row["body"]}')

@@ -1,9 +1,9 @@
 from typing import List
 
 import docx
-from IngestorInterface import IngestInterface
-from QuoteModel import QuoteModel
-from exceptions import UnsupportedFileTypeError
+from .IngestorInterface import IngestInterface
+from .QuoteModel import QuoteModel
+from .exceptions import UnsupportedFileTypeError
 
 
 class DOCXIngestor(IngestInterface):
@@ -26,11 +26,11 @@ class DOCXIngestor(IngestInterface):
         return quotes
 
 
-doc = docx.Document('../_data/DogQuotes/DogQuotesDOCX.docx')
-
-for paragraph in doc.paragraphs:
-    # print(paragraph.text.replace('"', ''))
-    if paragraph.text != "":
-        parsed = [parse.strip() for parse in paragraph.text.split('-')]
-        print(f'0:{parsed[0]}, '
-              f'1:{parsed[1]}')
+# doc = docx.Document('../_data/DogQuotes/DogQuotesDOCX.docx')
+#
+# for paragraph in doc.paragraphs:
+#     # print(paragraph.text.replace('"', ''))
+#     if paragraph.text != "":
+#         parsed = [parse.strip() for parse in paragraph.text.split('-')]
+#         print(f'0:{parsed[0]}, '
+#               f'1:{parsed[1]}')

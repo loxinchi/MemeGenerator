@@ -1,3 +1,5 @@
+import os
+
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -17,11 +19,19 @@ class MemeEngine:
             # Adding a quote body and a quote author to the image.
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('~/Library/Fonts/MesloLGS NF Regular.ttf', size=20)
-            draw.text((10, 30), f'{text} - {author}', font=font, fill='white')
-            # Saving the manipulated image.
-            img.save(self.output_dir + 'resized.jpg')
+            # TODO: Make text responsive
+            draw.text((15, 100), f'{text}\n-- {author}', font=font, fill='#3867d6')
 
-        return f'{self.output_dir}resized.jpg'
+            # create output_dir if not exists
+            if not os.path.exists(self.output_dir):
+                # mode
+                mode = 0o777
+                os.mkdir(self.output_dir, mode)
+
+            # Saving the manipulated image.
+            img.save(self.output_dir + '/resized.jpg')
+
+        return f'{self.output_dir}/resized.jpg'
 
 
 # if __name__ == '__main__':

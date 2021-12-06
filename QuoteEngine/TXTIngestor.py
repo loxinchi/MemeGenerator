@@ -1,9 +1,9 @@
 import re
 from typing import List
 
-from IngestorInterface import IngestInterface
-from QuoteModel import QuoteModel
-from exceptions import UnsupportedFileTypeError
+from .IngestorInterface import IngestInterface
+from .QuoteModel import QuoteModel
+from .exceptions import UnsupportedFileTypeError
 
 
 class TXTIngestor(IngestInterface):
@@ -27,5 +27,5 @@ class TXTIngestor(IngestInterface):
         return quotes
 
 
-s = TXTIngestor.parse('./_data/DogQuotes/DogQuotesTXT.txt')
-print(s)
+# s = TXTIngestor.parse('./_data/DogQuotes/DogQuotesTXT.txt')
+# print(s)
