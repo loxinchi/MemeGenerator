@@ -29,9 +29,11 @@ class MemeEngine:
                 # mode
                 mode = 0o777
                 os.mkdir(self.output_dir, mode)
-
-            # Saving the manipulated image.
-            img.save(self.output_dir + '/resized.jpg')
+            try:
+                # Saving the manipulated image.
+                img.save(self.output_dir + '/resized.jpg')
+            except OSError:
+                print(f'Only support jpg file.')
 
         return f'{self.output_dir}/resized.jpg'
 
