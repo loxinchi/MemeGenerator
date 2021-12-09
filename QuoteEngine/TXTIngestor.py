@@ -1,18 +1,25 @@
+"""TXTIngestor convert data form TXT file to a list of QuoteModel."""
 import re
 from typing import List
 
+from .exceptions import UnsupportedFileTypeError
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
-from .exceptions import UnsupportedFileTypeError
 
 
 class TXTIngestor(IngestInterface):
+    """TXTIngestor is a strategy object realise parse from the abstract IngestInterface."""
+
     allowed_extensions = ["txt"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Verify extension match TXT and parse data form TXT file a list of QuoteModel.
+
+        :param path: File path that provides quote data.
+        """
         if not cls.can_ingest(path):
-            raise UnsupportedFileTypeError("Failed to ingest. This is not a CSV file.")
+            raise UnsupportedFileTypeError("Failed to ingest. This is not a TXT file.")
 
         quotes = []
         with open(path) as inputs:
@@ -25,7 +32,3 @@ class TXTIngestor(IngestInterface):
                         quotes.append(new_quote)
 
         return quotes
-
-
-# s = TXTIngestor.parse('./_data/DogQuotes/DogQuotesTXT.txt')
-# print(s)

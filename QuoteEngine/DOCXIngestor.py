@@ -1,16 +1,24 @@
+"""DOCXIngestor convert data form DOCX file to a list of QuoteModel."""
 from typing import List
 
 import docx
+
+from .exceptions import UnsupportedFileTypeError
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
-from .exceptions import UnsupportedFileTypeError
 
 
 class DOCXIngestor(IngestInterface):
+    """DOCXIngestor is a strategy object realise parse from the abstract IngestInterface."""
+
     allowed_extensions = ["docx"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Verify extension match DOCX and parse data form DOCX file a list of QuoteModel.
+
+        :param path: File path that provides quote data.
+        """
         if not cls.can_ingest(path):
             raise UnsupportedFileTypeError("Failed to ingest. This is not a DOCX file.")
 
@@ -24,13 +32,3 @@ class DOCXIngestor(IngestInterface):
                 quotes.append(new_quote)
 
         return quotes
-
-
-# doc = docx.Document('../_data/DogQuotes/DogQuotesDOCX.docx')
-#
-# for paragraph in doc.paragraphs:
-#     # print(paragraph.text.replace('"', ''))
-#     if paragraph.text != "":
-#         parsed = [parse.strip() for parse in paragraph.text.split('-')]
-#         print(f'0:{parsed[0]}, '
-#               f'1:{parsed[1]}')

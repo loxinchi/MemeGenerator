@@ -1,5 +1,9 @@
+# *Invalid File, Invalid Text Input (e.g. too long)
+
+
 class UnsupportedFileTypeError(NotImplementedError):
     """Unsupported file type for ingestor."""
+
     def __init__(self, *args):
         if args:
             self.message = args[0]
@@ -8,13 +12,14 @@ class UnsupportedFileTypeError(NotImplementedError):
 
     def __str__(self):
         if self.message:
-            return f'{self.message}.'
+            return f"{self.message}."
         else:
-            return 'UnsupportedFileTypeError has been raised'
+            return "Invalid File Type."
 
 
 class AuthorNoneTypeError(NotImplementedError):
     """Empty value for mandatory author attribute."""
+
     def __init__(self, *args):
         if args:
             self.message = args[0]
@@ -23,6 +28,6 @@ class AuthorNoneTypeError(NotImplementedError):
 
     def __str__(self):
         if self.message:
-            return f'{self.message}.'
+            return f"{self.message}."
         else:
-            return 'AuthorNoneError has been raised'
+            return "Author is a mandatory field."

@@ -1,25 +1,32 @@
+"""PDFIngestor convert data form PDF file to a list of QuoteModel."""
 import os
 import random
 import re
 import subprocess
 from typing import List
 
+from .exceptions import UnsupportedFileTypeError
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
-from .exceptions import UnsupportedFileTypeError
 
 
 class PDFIngestor(IngestInterface):
+    """PDFIngestor is a strategy object realise parse from the abstract IngestInterface."""
+
     allowed_extensions = ["pdf"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Verify extension match PDF and parse data form PDF file a list of QuoteModel.
+
+        :param path: File path that provides quote data.
+        """
         if not cls.can_ingest(path):
-            raise UnsupportedFileTypeError("Failed to ingest. This is not a CSV file.")
+            raise UnsupportedFileTypeError("Failed to ingest. This is not a PDF file.")
 
         quotes = []
         tmp = f"{random.randint(0, 1000000)}.txt"
-        subprocess.run(['pdftotext', path, tmp])
+        subprocess.run(["pdftotext", path, tmp])
         with open(tmp) as fp:
             for line in fp.readlines():
                 line = line.strip("\n\r").strip()
@@ -31,28 +38,3 @@ class PDFIngestor(IngestInterface):
 
         os.remove(tmp)
         return quotes
-
-
-# s = PDFIngestor.parse("../_data/DogQuotes/DogQuotesPDF.pdf")
-# print(s)
-# if __name__ == '__main__':
-#     quotes = []
-#     tmp = f'{random.randint(0, 1000000)}.txt'
-#     # print(tmp)
-#     p = subprocess.run(['pdftotext', '../_data/DogQuotes/DogQuotesPDF.pdf', tmp])
-    # with open(tmp) as fp:
-    #     for line in fp.readlines():
-    #         print(line)
-
-# quotes = '"Treat yo self" - Fluffles "Life is like a box of treats" - Forrest Pup "It\'s the size of the fight in the dog" - Bark Twain'
-# filter_line = re.findall("\"[\w\\' ]+\" - [\w ]+", quotes)
-# print(f"line: {filter_line}")
-# for match in re.finditer("(\"[\w\\' ]+\") - ([\w ]+)+", quotes):
-#     quote, author = match.groups()
-#     print(f"{quote}, {author}")
-
-# if len(line) > 0:
-#     parsed = line.split(' ')
-#     # print(f"parsed: {parsed}")
-#     quote = [quote_items.split(',') for quote_items in parsed]
-#     print(quote)
