@@ -34,23 +34,26 @@ class MemeEngine:
             font = ImageFont.truetype(
                 "~/Library/Fonts/MesloLGS NF Regular.ttf", size=20
             )
+
             # Adjust text position align with image height and width
             w, h = img.size
             text_w, text_h = draw.textsize(f"{text}\n-- {author}", font)
+            draw.text(((w - text_w) - 1, (h - (text_h * 1.5)) - 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
+            draw.text(((w - text_w) + 1, (h - (text_h * 1.5)) - 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
+            draw.text(((w - text_w) - 1, (h - (text_h * 1.5)) + 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
+            draw.text(((w - text_w) + 1, (h - (text_h * 1.5)) + 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
             draw.text(
                 (w - text_w, h - (text_h * 1.5)),
                 f"{text}\n-- {author}",
                 font=font,
-                fill="#3867d6",
+                fill="#ffba08",
             )
 
             # create output_dir if not exists
             if not os.path.exists(self.output_dir):
-                # mode
                 mode = 0o777
                 os.mkdir(self.output_dir, mode)
             try:
-                # Saving the manipulated image.
                 img.convert("RGB")
                 img.save(self.output_dir + "/resized.jpg")
             except OSError:

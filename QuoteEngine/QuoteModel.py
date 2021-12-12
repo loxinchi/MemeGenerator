@@ -5,8 +5,10 @@ The `QuoteModel` class represents a quote object. Each has a quote and an author
 
 
 class QuoteModel:
-    """An QuoteModel object encapsulates semantic and physical parameters about the object, such
-    as its quote body (required), author name (required).
+    """A `QuoteModel` object contains quote and Author.
+
+    `QuoteModel` object capsules semantic and physical parameters about the object,
+    such as its quote body (required), author name (required).
     """
 
     def __init__(self, body, author):
