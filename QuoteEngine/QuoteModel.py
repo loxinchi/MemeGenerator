@@ -11,7 +11,7 @@ class QuoteModel:
     such as its quote body (required), author name (required).
     """
 
-    def __init__(self, body, author):
+    def __init__(self, body, author) -> None:
         """Create a new `QuoteModel`.
 
         :param body: a quote.
@@ -20,6 +20,6 @@ class QuoteModel:
         self.body = body
         self.author = author
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return f"<quote:{self.body}, author:{self.author}>"

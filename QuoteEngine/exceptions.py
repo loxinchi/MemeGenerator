@@ -4,7 +4,7 @@
 class UnsupportedFileTypeError(NotImplementedError):
     """Unsupported file type for ingestor."""
 
-    def __init__(self, *args):
+    def __init__(self, *args) -> None:
         """Summary of UnsupportedFileTypeError.
 
         :param *args: Any values.
@@ -14,7 +14,7 @@ class UnsupportedFileTypeError(NotImplementedError):
         else:
             self.message = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Return `str(self)`."""
         if self.message:
             return f"{self.message}."
@@ -25,7 +25,7 @@ class UnsupportedFileTypeError(NotImplementedError):
 class AuthorNoneTypeError(NotImplementedError):
     """Empty value for mandatory author attribute."""
 
-    def __init__(self, *args):
+    def __init__(self, *args) -> None:
         """Summary of AuthorNoneTypeError.
 
         :param *args: Any values.
@@ -35,7 +35,7 @@ class AuthorNoneTypeError(NotImplementedError):
         else:
             self.message = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Return `str(self)`."""
         if self.message:
             return f"{self.message}."

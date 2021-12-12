@@ -18,7 +18,7 @@ class Ingestor(IngestInterface):
     def parse(cls, path: str) -> List[QuoteModel]:
         """Verify file extension matchs any of the ingestors.
 
-        Pick up the proper ingestor class to a file.
+        Choose the ingestor class to a file.
 
         :param path: File path that provides quote data.
         """

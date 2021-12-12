@@ -60,8 +60,3 @@ class MemeEngine:
                 print(f"Only support jpg file.")
 
         return f"{self.output_dir}/resized.jpg"
-
-
-# if __name__ == '__main__':
-#     s = MemeEngine('/Users/xinchilo/Desktop/')
-#     print(s.make_meme('/Users/xinchilo/Desktop/maxresdefault.jpeg', 'puppy', 'yuu', 500))
