@@ -5,7 +5,7 @@ import re
 import subprocess
 from typing import List
 
-from .exceptions import UnsupportedFileTypeError
+from .exceptions import WrongIngestorError
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
 
@@ -22,7 +22,7 @@ class PDFIngestor(IngestInterface):
         :param path: File path that provides quote data.
         """
         if not cls.can_ingest(path):
-            raise UnsupportedFileTypeError("Failed to ingest. This is not a PDF file.")
+            raise WrongIngestorError("Failed to ingest. This is not a PDF file.")
 
         quotes = []
         tmp = f"{random.randint(0, 1000000)}.txt"

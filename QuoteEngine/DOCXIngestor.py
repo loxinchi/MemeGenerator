@@ -3,7 +3,7 @@ from typing import List
 
 import docx
 
-from .exceptions import UnsupportedFileTypeError
+from .exceptions import WrongIngestorError
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
 
@@ -20,7 +20,7 @@ class DOCXIngestor(IngestInterface):
         :param path: File path that provides quote data.
         """
         if not cls.can_ingest(path):
-            raise UnsupportedFileTypeError("Failed to ingest. This is not a DOCX file.")
+            raise WrongIngestorError("Failed to ingest. This is not a DOCX file.")
 
         quotes = []
         doc = docx.Document(path)

@@ -2,7 +2,7 @@
 import re
 from typing import List
 
-from .exceptions import UnsupportedFileTypeError
+from .exceptions import WrongIngestorError
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
 
@@ -19,7 +19,7 @@ class TXTIngestor(IngestInterface):
         :param path: File path that provides quote data.
         """
         if not cls.can_ingest(path):
-            raise UnsupportedFileTypeError("Failed to ingest. This is not a TXT file.")
+            raise WrongIngestorError("Failed to ingest. This is not a TXT file.")
 
         quotes = []
         with open(path) as inputs:
