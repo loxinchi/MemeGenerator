@@ -1,4 +1,4 @@
-"""A MemeEngine manupulates image file to a defined style."""
+"""A MemeEngine manipulates image file to a defined style."""
 import os
 
 from PIL import Image, ImageDraw, ImageFont
@@ -57,6 +57,6 @@ class MemeEngine:
                 img.convert("RGB")
                 img.save(self.output_dir + "/resized.jpg")
             except OSError:
-                print(f"Only support jpg file.")
+                print(f"Only support image file.")
 
         return f"{self.output_dir}/resized.jpg"
