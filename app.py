@@ -3,7 +3,7 @@ import os
 import random
 
 import requests
-from flask import Flask, abort, render_template, request
+from flask import Flask, render_template, request
 
 from meme import generate_meme
 from MemeEngine import MemeEngine
@@ -41,14 +41,14 @@ def setup():
     return quotes, imgs
 
 
-quotes, imgs = setup()
+all_quotes, all_images = setup()
 
 
 @app.route("/")
 def meme_rand():
     """Generate a random meme."""
-    img = random.choice(imgs)
-    doc_quotes = random.choice(quotes)
+    img = random.choice(all_images)
+    doc_quotes = random.choice(all_quotes)
     quote = random.choice(doc_quotes)
     path = meme.make_meme(img, quote.body, quote.author)
     return render_template("meme.html", path=path)
@@ -67,8 +67,8 @@ def meme_post():
     image_url = request.form["image_url"]
     t_img = "./temp_img.jpg"
     img_content = requests.get(image_url, stream=True).content
-    with open(t_img, "wb") as f:
-        f.write(img_content)
+    with open(t_img, "wb") as file:
+        file.write(img_content)
 
     # generate a meme using temp file and the body and author form parameters.
     body = request.form["body"]

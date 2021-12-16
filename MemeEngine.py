@@ -23,11 +23,11 @@ class MemeEngine:
         :param width: Image width.
         """
         # Load image
-        with Image.open(img_path) as im:
-            # Resizing the image so the width is at most 500px and the height is scaled proportionally.
-            width_percent = width / float(im.size[0])
-            height_size = int((float(im.size[1]) * float(width_percent)))
-            img = im.resize((width, height_size), Image.ANTIALIAS)
+        with Image.open(img_path) as input_image:
+            # Resize image so the width is at most 500px and the height is scaled proportionally.
+            width_percent = width / float(input_image.size[0])
+            height_size = int((float(input_image.size[1]) * float(width_percent)))
+            img = input_image.resize((width, height_size), Image.ANTIALIAS)
 
             # Adding a quote body and a quote author to the image.
             draw = ImageDraw.Draw(img)
@@ -36,14 +36,34 @@ class MemeEngine:
             )
 
             # Adjust text position align with image height and width
-            w, h = img.size
+            width, height = img.size
             text_w, text_h = draw.textsize(f"{text}\n-- {author}", font)
-            draw.text(((w - text_w) - 1, (h - (text_h * 1.5)) - 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
-            draw.text(((w - text_w) + 1, (h - (text_h * 1.5)) - 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
-            draw.text(((w - text_w) - 1, (h - (text_h * 1.5)) + 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
-            draw.text(((w - text_w) + 1, (h - (text_h * 1.5)) + 1), f"{text}\n-- {author}", font=font, fill="#52b69a")
             draw.text(
-                (w - text_w, h - (text_h * 1.5)),
+                ((width - text_w) - 1, (height - (text_h * 1.5)) - 1),
+                f"{text}\n-- {author}",
+                font=font,
+                fill="#52b69a",
+            )
+            draw.text(
+                ((width - text_w) + 1, (height - (text_h * 1.5)) - 1),
+                f"{text}\n-- {author}",
+                font=font,
+                fill="#52b69a",
+            )
+            draw.text(
+                ((width - text_w) - 1, (height - (text_h * 1.5)) + 1),
+                f"{text}\n-- {author}",
+                font=font,
+                fill="#52b69a",
+            )
+            draw.text(
+                ((width - text_w) + 1, (height - (text_h * 1.5)) + 1),
+                f"{text}\n-- {author}",
+                font=font,
+                fill="#52b69a",
+            )
+            draw.text(
+                (width - text_w, height - (text_h * 1.5)),
                 f"{text}\n-- {author}",
                 font=font,
                 fill="#ffba08",
@@ -57,6 +77,12 @@ class MemeEngine:
                 img.convert("RGB")
                 img.save(self.output_dir + "/resized.jpg")
             except OSError:
-                print(f"Only support image file.")
+                print("Only support image file.")
 
         return f"{self.output_dir}/resized.jpg"
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    def __repr__(self):
+        return f"MemeEngine(output_dir = {self.output_dir})"

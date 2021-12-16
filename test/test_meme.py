@@ -1,15 +1,16 @@
 """Validate MemeEngine class and generate_meme.
 
 To run these tests from the project root, run:
-    $ pytest -v test/Test_meme.py
+    $ pytest -v test/test_meme.py
 """
 import os
 
-from MemeEngine import MemeEngine
 from meme import generate_meme
+from MemeEngine import MemeEngine
 
 
 def test_meme_engine(img_root):
+    """Check MemeEngine generate file to the expected path."""
     img = img_root / "xander_1.jpg"
     output_dir = "./test_static"
     m = MemeEngine(output_dir)
@@ -19,8 +20,8 @@ def test_meme_engine(img_root):
 
 
 def test_generate_meme(img_root):
+    """Check generate_meme generate file to the expected path."""
     img_path = img_root / "xander_1.jpg"
     output_path = generate_meme(img_path, "quotes", "Author")
-    assert output_path == f"./static/resized.jpg"
+    assert output_path == "./static/resized.jpg"
     assert os.path.isfile(output_path)
-

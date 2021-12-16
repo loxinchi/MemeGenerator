@@ -16,10 +16,7 @@ class WrongIngestorError(NotImplementedError):
 
     def __str__(self) -> str:
         """Return `str(self)`."""
-        if self.message:
-            return f"{self.message}."
-        else:
-            return "Invalid File Type."
+        return f"{self.message}." if self.message else "Invalid File Type."
 
 
 class AuthorNoneTypeError(NotImplementedError):
@@ -37,10 +34,7 @@ class AuthorNoneTypeError(NotImplementedError):
 
     def __str__(self) -> str:
         """Return `str(self)`."""
-        if self.message:
-            return f"{self.message}."
-        else:
-            return "Author is a mandatory field."
+        return f"{self.message}." if self.message else "Author is a mandatory field."
 
 
 class UnsupportedFileTypeError(NotImplementedError):
@@ -59,6 +53,4 @@ class UnsupportedFileTypeError(NotImplementedError):
     def __str__(self) -> str:
         """Return `str(self)`."""
         if self.message:
-            return f"{self.message}."
-        else:
-            return "Author is a mandatory field."
+            return f"{self.message}." if self.message else "Author is a mandatory field."
