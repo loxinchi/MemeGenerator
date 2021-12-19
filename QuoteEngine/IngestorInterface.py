@@ -1,7 +1,6 @@
 """An abstract base class for each type of the ingestor."""
 from abc import ABC, abstractmethod
 from typing import List
-from xmlrpc.client import boolean
 
 from .QuoteModel import QuoteModel
 
@@ -17,7 +16,7 @@ class IngestInterface(ABC):
     allowed_extensions = []
 
     @classmethod
-    def can_ingest(cls, path) -> boolean:
+    def can_ingest(cls, path) -> bool:
         """Verify file extension as expected."""
         ext = path.split(".")[-1]
         return ext in cls.allowed_extensions
