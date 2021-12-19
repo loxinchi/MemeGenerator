@@ -2,8 +2,8 @@
 
 [Overview](#Overview)  
 [Installation](#Installation)  
-[Run the application](#Run the application)  
-[Project Scaffolding](#Project Scaffolding)  
+[Run the application](#Run-the-application)  
+[Project Scaffolding](#Project-Scaffolding)  
 [Dependencies](#Dependencies)
 
 ## <a name="Overview"></a>Overview
@@ -21,13 +21,13 @@ User can make meme by providing image url and quote, author text.
 ## <a name="Installation"></a>Installation
 `pip install -r requirements.txt`
 
-## <a name="Run the app"></a>Run the app
+## <a name="Run-the-application"></a>Run the app
 ```
 $ flask run
   * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
   ```
 
-## <a name="Project Scaffolding"></a>Project Scaffolding
+## <a name="Project-Scaffolding"></a>Project Scaffolding
 ```
 ├── MemeEngine.py
 ├── QuoteEngine              <- Pasrse different types of quote data into QuoteModel 
