@@ -26,6 +26,11 @@ User can make meme by providing image url and quote, author text.
 $ flask run
   * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
   ```
+  
+## <a name="DEMO"></a>DEMO
+![v1](https://user-images.githubusercontent.com/76967954/146688560-2b828313-636f-4dc2-9b69-81fbe49eb0b9.gif)  
+![v2](https://user-images.githubusercontent.com/76967954/146688521-7240cab5-4bb9-4c37-ae24-b90d235a6be0.gif)  
+
 
 ## <a name="Project-Scaffolding"></a>Project Scaffolding
 ```
