@@ -1,10 +1,10 @@
 # MemeGenerator
 
-####[Overview](#Overview)
-####[Installation](#Installation)
-####[Run the application](#Run the application)
-####[Project Scaffolding](#Project Scaffolding)
-####[Dependencies](#Dependencies)
+[Overview](#Overview)  
+[Installation](#Installation)  
+[Run the application](#Run the application)  
+[Project Scaffolding](#Project Scaffolding)  
+[Dependencies](#Dependencies)
 
 ## <a name="Overview"></a>Overview
 A multimedia application to dynamically generate memes, including an image with an overlaid quote.
