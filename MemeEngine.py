@@ -32,42 +32,45 @@ class MemeEngine:
             # Adding a quote body and a quote author to the image.
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype(
-                "~/Library/Fonts/MesloLGS NF Regular.ttf", size=20
+                "./_data/font/MesloLGS NF Regular.ttf", size=20
             )
 
             # Adjust text position align with image height and width
             width, height = img.size
             text_w, text_h = draw.textsize(f"{text}\n-- {author}", font)
-            draw.text(
-                ((width - text_w) - 1, (height - (text_h * 1.5)) - 1),
-                f"{text}\n-- {author}",
-                font=font,
-                fill="#52b69a",
-            )
-            draw.text(
-                ((width - text_w) + 1, (height - (text_h * 1.5)) - 1),
-                f"{text}\n-- {author}",
-                font=font,
-                fill="#52b69a",
-            )
-            draw.text(
-                ((width - text_w) - 1, (height - (text_h * 1.5)) + 1),
-                f"{text}\n-- {author}",
-                font=font,
-                fill="#52b69a",
-            )
-            draw.text(
-                ((width - text_w) + 1, (height - (text_h * 1.5)) + 1),
-                f"{text}\n-- {author}",
-                font=font,
-                fill="#52b69a",
-            )
-            draw.text(
-                (width - text_w, height - (text_h * 1.5)),
-                f"{text}\n-- {author}",
-                font=font,
-                fill="#ffba08",
-            )
+            try:
+                draw.text(
+                    ((width - text_w) - 1, (height - (text_h * 1.5)) - 1),
+                    f"{text}\n-- {author}",
+                    font=font,
+                    fill="#52b69a",
+                )
+                draw.text(
+                    ((width - text_w) + 1, (height - (text_h * 1.5)) - 1),
+                    f"{text}\n-- {author}",
+                    font=font,
+                    fill="#52b69a",
+                )
+                draw.text(
+                    ((width - text_w) - 1, (height - (text_h * 1.5)) + 1),
+                    f"{text}\n-- {author}",
+                    font=font,
+                    fill="#52b69a",
+                )
+                draw.text(
+                    ((width - text_w) + 1, (height - (text_h * 1.5)) + 1),
+                    f"{text}\n-- {author}",
+                    font=font,
+                    fill="#52b69a",
+                )
+                draw.text(
+                    (width - text_w, height - (text_h * 1.5)),
+                    f"{text}\n-- {author}",
+                    font=font,
+                    fill="#ffba08",
+                )
+            except ValueError:
+                print("Cannot draw quote to the provided image, please try with jpg, jpeg file.")
 
             # create output_dir if not exists
             if not os.path.exists(self.output_dir):
@@ -77,7 +80,7 @@ class MemeEngine:
                 img.convert("RGB")
                 img.save(self.output_dir + "/resized.jpg")
             except OSError:
-                print("Only support image file.")
+                print("The provided image type is not able to display, please try with jpg, jpeg file.")
 
         return f"{self.output_dir}/resized.jpg"
 

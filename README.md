@@ -44,8 +44,9 @@ $ flask run
 │   ├── QuoteModel.py        <- QuoteModel Object
 │   ├── TXTIngestor.py       
 │   └── exceptions.py        <- Customized exception
-├── _data                    <- Resource files of quotes and images
+├── _data                    <- Resource files of quotes, images, font
 │   ├── DogQuotes
+│   ├── font
 │   ├── SimpleLines
 │   └── photos
 ├── app.py                   <- Load resources and randomly choose one image and QuoteModel and render to html.
