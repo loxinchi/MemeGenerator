@@ -3,7 +3,7 @@ from typing import List
 
 from .CSVIngestor import CSVIngestor
 from .DOCXIngestor import DOCXIngestor
-from .exceptions import UnsupportedFileTypeError
+from Exceptions.exceptions import UnsupportedFileTypeError
 from .IngestorInterface import IngestInterface
 from .PDFIngestor import PDFIngestor
 from .QuoteModel import QuoteModel

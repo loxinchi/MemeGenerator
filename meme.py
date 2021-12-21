@@ -5,7 +5,7 @@ import random
 
 from MemeEngine import MemeEngine
 from QuoteEngine import Ingestor, QuoteModel
-from QuoteEngine.exceptions import AuthorNoneTypeError
+from Exceptions.exceptions import AuthorNoneTypeError
 
 
 def generate_meme(path: str = None, body: str = None, author: str = None) -> str:
@@ -44,7 +44,7 @@ def generate_meme(path: str = None, body: str = None, author: str = None) -> str
 
         quote = random.choice(quotes)
     else:
-        if author is None:
+        if author == '':
             raise AuthorNoneTypeError("Author Required if Body is Used")
         quote = QuoteModel(body, author)
 

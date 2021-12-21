@@ -3,7 +3,7 @@ from typing import List
 
 import docx
 
-from .exceptions import WrongIngestorError
+from Exceptions.exceptions import WrongIngestorError
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
 

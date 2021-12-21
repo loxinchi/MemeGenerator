@@ -1,7 +1,7 @@
 memevenv
 QuoteEngine/__pycache__
 __pycache__/
-static/
 TODO.py
 *jpg
 .idea
+.DS_Store

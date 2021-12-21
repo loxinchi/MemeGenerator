@@ -1,7 +1,10 @@
 """A MemeEngine manipulates image file to a defined style."""
 import os
+from datetime import datetime
 
 from PIL import Image, ImageDraw, ImageFont
+
+from Exceptions.exceptions import ImageBrokenError
 
 
 class MemeEngine:
@@ -23,22 +26,22 @@ class MemeEngine:
         :param width: Image width.
         """
         # Load image
-        with Image.open(img_path) as input_image:
-            # Resize image so the width is at most 500px and the height is scaled proportionally.
-            width_percent = width / float(input_image.size[0])
-            height_size = int((float(input_image.size[1]) * float(width_percent)))
-            img = input_image.resize((width, height_size), Image.ANTIALIAS)
+        try:
+            with Image.open(img_path) as input_image:
+                # Resize image so the width is at most 500px and the height is scaled proportionally.
+                width_percent = width / float(input_image.size[0])
+                height_size = int((float(input_image.size[1]) * float(width_percent)))
+                img = input_image.resize((width, height_size), Image.ANTIALIAS)
 
-            # Adding a quote body and a quote author to the image.
-            draw = ImageDraw.Draw(img)
-            font = ImageFont.truetype(
-                "./_data/font/MesloLGS NF Regular.ttf", size=20
-            )
+                # Adding a quote body and a quote author to the image.
+                draw = ImageDraw.Draw(img)
+                font = ImageFont.truetype(
+                    "./_data/font/MesloLGS NF Regular.ttf", size=20
+                )
 
-            # Adjust text position align with image height and width
-            width, height = img.size
-            text_w, text_h = draw.textsize(f"{text}\n-- {author}", font)
-            try:
+                # Adjust text position align with image height and width
+                width, height = img.size
+                text_w, text_h = draw.textsize(f"{text}\n-- {author}", font)
                 draw.text(
                     ((width - text_w) - 1, (height - (text_h * 1.5)) - 1),
                     f"{text}\n-- {author}",
@@ -69,20 +72,19 @@ class MemeEngine:
                     font=font,
                     fill="#ffba08",
                 )
-            except ValueError:
-                print("Cannot draw quote to the provided image, please try with jpg, jpeg file.")
 
-            # create output_dir if not exists
-            if not os.path.exists(self.output_dir):
-                mode = 0o777
-                os.mkdir(self.output_dir, mode)
-            try:
+                if not os.path.exists(self.output_dir):
+                    mode = 0o777
+                    os.mkdir(self.output_dir, mode)
+
+                now = datetime.now().strftime("%H_%M_%S")
+                output_path = self.output_dir + f"/resized{now}.jpg"
                 img.convert("RGB")
-                img.save(self.output_dir + "/resized.jpg")
-            except OSError:
-                print("The provided image type is not able to display, please try with jpg, jpeg file.")
+                img.save(output_path)
+        except (OSError, ValueError):
+            raise ImageBrokenError
 
-        return f"{self.output_dir}/resized.jpg"
+        return output_path
 
     def __str__(self):
         return self.__class__.__name__

@@ -6,7 +6,7 @@ To run these tests from the project root, run:
 import pytest
 
 from QuoteEngine import *
-from QuoteEngine.exceptions import UnsupportedFileTypeError, WrongIngestorError
+from Exceptions.exceptions import UnsupportedFileTypeError, WrongIngestorError
 
 
 @pytest.mark.parametrize(

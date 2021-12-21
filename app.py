@@ -1,10 +1,12 @@
 """Load resources and randomly choose one image and QuoteModel and render to html."""
 import os
 import random
+from datetime import datetime
 
 import requests
 from flask import Flask, render_template, request
 
+from Exceptions.exceptions import AuthorNoneTypeError, ImageBrokenError
 from meme import generate_meme
 from MemeEngine import MemeEngine
 from QuoteEngine import Ingestor
@@ -65,15 +67,26 @@ def meme_post():
     """Create a user defined meme."""
     # Save the image from the image_url form param to a temp local file.
     image_url = request.form["image_url"]
-    t_img = "./temp_img.jpg"
-    img_content = requests.get(image_url, stream=True).content
-    with open(t_img, "wb") as file:
-        file.write(img_content)
+    # Adding current time
+    now = datetime.now().strftime("%H_%M_%S")
+    t_img = f"./temp_img{now}.jpg"
+    try:
+        img_content = requests.get(image_url, stream=True).content
+        with open(t_img, "wb") as file:
+            file.write(img_content)
 
-    # generate a meme using temp file and the body and author form parameters.
-    body = request.form["body"]
-    author = request.form["author"]
-    path = generate_meme(t_img, body, author)
+        # generate a meme using temp file and the body and author form parameters.
+        body = request.form["body"]
+        author = request.form["author"]
+        path = generate_meme(t_img, body, author)
+    except requests.exceptions.RequestException as err:
+        print(err)
+        return render_template("meme_url_error.html")
+    except AuthorNoneTypeError as err:
+        print(err)
+        return render_template("meme_author_error.html")
+    except ImageBrokenError:
+        return render_template("meme_image_error.html")
 
     # Remove the temporary saved image.
     os.remove(t_img)
@@ -81,4 +94,4 @@ def meme_post():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
