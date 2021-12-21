@@ -28,8 +28,9 @@ $ flask run
   ```
   
 ## <a name="DEMO"></a>DEMO
-![v1](https://user-images.githubusercontent.com/76967954/146688560-2b828313-636f-4dc2-9b69-81fbe49eb0b9.gif)  
-![v2](https://user-images.githubusercontent.com/76967954/146688521-7240cab5-4bb9-4c37-ae24-b90d235a6be0.gif)  
+![demo1](https://user-images.githubusercontent.com/76967954/146972454-9511e7c9-1509-4527-a2c0-e4942869ee1a.gif)  
+
+![demo2](https://user-images.githubusercontent.com/76967954/146972463-05d2a55f-245b-4e3c-912d-55dd211dafa1.gif)
 
 
 ## <a name="Project-Scaffolding"></a>Project Scaffolding
@@ -58,11 +59,11 @@ $ flask run
 
 ## <a name="Dependencies"></a>Dependencies
 
-- Flask
-- pandas
-- docx
-- subprocess
-- Pillow
+- [Flask](https://flask.palletsprojects.com/)
+- [pandas](https://pandas.pydata.org/)
+- [docx](https://python-docx.readthedocs.io/)
+- [subprocess](https://docs.python.org/3/library/subprocess.html)
+- [Pillow](https://pillow.readthedocs.io/)
 
 
-
+Fllow PEP8 Style Guide for Python Code(https://www.python.org/dev/peps/pep-0008/)
