@@ -66,4 +66,4 @@ $ flask run
 - [Pillow](https://pillow.readthedocs.io/)
 
 
-Fllow PEP8 Style Guide for Python Code(https://www.python.org/dev/peps/pep-0008/)
+[Follow PEP8 Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
