@@ -6,6 +6,7 @@ import subprocess
 from typing import List
 
 from Exceptions.exceptions import WrongIngestorError
+
 from .IngestorInterface import IngestInterface
 from .QuoteModel import QuoteModel
 

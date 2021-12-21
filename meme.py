@@ -3,9 +3,9 @@ import argparse
 import os
 import random
 
+from Exceptions.exceptions import AuthorNoneTypeError
 from MemeEngine import MemeEngine
 from QuoteEngine import Ingestor, QuoteModel
-from Exceptions.exceptions import AuthorNoneTypeError
 
 
 def generate_meme(path: str = None, body: str = None, author: str = None) -> str:
@@ -44,7 +44,7 @@ def generate_meme(path: str = None, body: str = None, author: str = None) -> str
 
         quote = random.choice(quotes)
     else:
-        if author == '':
+        if author == "":
             raise AuthorNoneTypeError("Author Required if Body is Used")
         quote = QuoteModel(body, author)
 

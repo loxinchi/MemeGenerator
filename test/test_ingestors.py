@@ -5,8 +5,8 @@ To run these tests from the project root, run:
 """
 import pytest
 
-from QuoteEngine import *
 from Exceptions.exceptions import UnsupportedFileTypeError, WrongIngestorError
+from QuoteEngine import *
 
 
 @pytest.mark.parametrize(

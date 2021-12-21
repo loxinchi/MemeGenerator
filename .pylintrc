@@ -153,6 +153,8 @@ disable=bare-except,
         unused-variable,
         unnecessary-pass,
         wildcard-import,
+        too-many-locals,
+        raise-missing-from
 
 
 # Enable the message, report, category or checker with the given id(s). You can

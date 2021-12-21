@@ -1,9 +1,10 @@
 """Choose the proper ingestor for a file."""
 from typing import List
 
+from Exceptions.exceptions import UnsupportedFileTypeError
+
 from .CSVIngestor import CSVIngestor
 from .DOCXIngestor import DOCXIngestor
-from Exceptions.exceptions import UnsupportedFileTypeError
 from .IngestorInterface import IngestInterface
 from .PDFIngestor import PDFIngestor
 from .QuoteModel import QuoteModel

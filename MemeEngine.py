@@ -1,6 +1,8 @@
 """A MemeEngine manipulates image file to a defined style."""
 import os
+import textwrap
 from datetime import datetime
+from string import ascii_letters
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -41,37 +43,20 @@ class MemeEngine:
 
                 # Adjust text position align with image height and width
                 width, height = img.size
-                text_w, text_h = draw.textsize(f"{text}\n-- {author}", font)
-                draw.text(
-                    ((width - text_w) - 1, (height - (text_h * 1.5)) - 1),
-                    f"{text}\n-- {author}",
-                    font=font,
-                    fill="#52b69a",
+                text_origin = f"{text}\n--{author}"
+                # Calculate the average length of a single character of our font.
+                char_width = sum(font.getsize(char)[0] for char in ascii_letters) / len(
+                    ascii_letters
                 )
-                draw.text(
-                    ((width - text_w) + 1, (height - (text_h * 1.5)) - 1),
-                    f"{text}\n-- {author}",
-                    font=font,
-                    fill="#52b69a",
-                )
-                draw.text(
-                    ((width - text_w) - 1, (height - (text_h * 1.5)) + 1),
-                    f"{text}\n-- {author}",
-                    font=font,
-                    fill="#52b69a",
-                )
-                draw.text(
-                    ((width - text_w) + 1, (height - (text_h * 1.5)) + 1),
-                    f"{text}\n-- {author}",
-                    font=font,
-                    fill="#52b69a",
-                )
-                draw.text(
-                    (width - text_w, height - (text_h * 1.5)),
-                    f"{text}\n-- {author}",
-                    font=font,
-                    fill="#ffba08",
-                )
+                # Translate this average length into a character count
+                # to fill 95% of our image's total width
+                max_char_count = int((width * 0.618) / char_width)
+                # Create a wrapped text object using scaled character count
+                scaled_text = textwrap.fill(text=text_origin, width=max_char_count)
+
+                # Add two colors to the text
+                draw.text(xy=(10, 10), text=scaled_text, font=font, fill="#ffba08")
+                draw.text(xy=(11, 11), text=scaled_text, font=font, fill="#FF5733")
 
                 if not os.path.exists(self.output_dir):
                     mode = 0o777

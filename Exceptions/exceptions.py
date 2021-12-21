@@ -16,7 +16,9 @@ class WrongIngestorError(NotImplementedError):
 
     def __str__(self) -> str:
         """Return `str(self)`."""
-        return f"{self.message}." if self.message else "Using the wrong type of ingestor."
+        return (
+            f"{self.message}." if self.message else "Using the wrong type of ingestor."
+        )
 
 
 class AuthorNoneTypeError(NotImplementedError):
@@ -53,7 +55,9 @@ class UnsupportedFileTypeError(NotImplementedError):
     def __str__(self) -> str:
         """Return `str(self)`."""
         if self.message:
-            return f"{self.message}." if self.message else "Unsupported quote file Type."
+            return (
+                f"{self.message}." if self.message else "Unsupported quote file Type."
+            )
 
 
 class ImageBrokenError(OSError, ValueError):
@@ -72,4 +76,8 @@ class ImageBrokenError(OSError, ValueError):
     def __str__(self) -> str:
         """Return `str(self)`."""
         if self.message:
-            return f"{self.message}." if self.message else "Image is broke, try another one."
+            return (
+                f"{self.message}."
+                if self.message
+                else "Image is broke, try another one."
+            )
